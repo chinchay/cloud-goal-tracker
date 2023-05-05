@@ -1,21 +1,70 @@
+import boto3
+import pandas as pd
+
 class Database:
-    def __init__(self, connection_to_database):
-        pass
+    def __init__(self, tableName):
+        self._table = self._ConnectWithTable(tableName)
     #
 
-    def Insert(self):
-        pass
+    def _ConnectWithTable(self, tableName):
+        dynamodb = boto3.resource("dynamodb", region_name="us-east-2")
+        table = dynamodb.Table(tableName)
+        return table
     #
 
-    def Modify(self):
-        pass
+    def _Retrieve(self):
+        # dynamodb = boto3.client("dynamodb", region_name="us-east-2")
+        # self.response = dynamodb.scan(TableName="sample_table_1")
+
+        response = self._table.scan()
+        return response
     #
 
-    def Delete(self):
-        pass
+    def BuildPandas(self):
+        # list_date = []
+        # list_read_scriptures = []
+        # list_wrote_journal = []
+        # for i in range(4):
+        #     date = self.response["Items"][i]["date"]["S"]
+        #     read_scriptures = self.response["Items"][i]["read_scriptures"]["BOOL"]
+        #     wrote_journal = self.response["Items"][i]["wrote_journal"]["BOOL"]
+        #     # print(date, read_scriptures, wrote_journal)
+        #     list_date.append(date)
+        #     list_read_scriptures.append(read_scriptures)
+        #     list_wrote_journal.append(wrote_journal)
+        # #
+        # df = pd.DataFrame( list(zip( list_date, list_read_scriptures, list_wrote_journal )), columns=["date", "read_scriptures", "wrote_journal"] )
+        # return df
+        #
+        response = self._Retrieve()
+        df = pd.DataFrame( response['Items'] )
+        df["date"] = pd.to_datetime(df.date)
+        df = df.sort_values(by=["date"]).reset_index(drop=True)
+
+        df.replace("True", True,  inplace=True)
+        df.replace("False", False, inplace=True)
+
+        return df
     #
 
-    def Retrieve(self):
-        pass
+    def PutItem(self, item):
+        # item = {
+        #     "date"            : "2023-04-11",
+        #     "read_scriptures" : False,
+        #     "wrote_journal"   : False
+        # }
+
+        response = self._table.put_item(Item=item)
+        if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
+            print("put item OK")
+        #
+    #
+
+    def DeleteItem(self, columnName, primaryKey):
+        key = {columnName: primaryKey}
+        response = self._table.delete_item(Key=key)
+        if response["ResponseMetadata"]["HTTPStatusCode"] == 200:
+            print("delete item OK")
+        #        
     #
 #

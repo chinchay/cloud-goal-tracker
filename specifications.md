@@ -29,7 +29,7 @@ __Attributes__:
 
 
 
-## DB : to connect with cloud database
+## Database : to connect with cloud database
 
 __Responsibility__:
 * To connect with cloud database and modify its content according to the prompts in the interface
@@ -48,4 +48,4 @@ __Attributes__:
 
 # Basic flux
 
-The main program calls `Auth` to authenticate the user. Different users can participate in the goal tracker. For each user, the program calls `Interace` to show the state of the goals and to allow updates. The class `DB` will allow those changes into the cloud database from the user's local device.
+The main program calls `Auth` to authenticate the user. Different users can participate in the goal tracker. For each user, the program calls `Interface` to show the state of the goals and to allow updates. The `Database`class will allow those changes into the cloud database from the user's local device.
