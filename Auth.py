@@ -1,13 +1,22 @@
+# Inspired from 
+# https://medium.com/@moinahmedbgbn/a-basic-login-system-with-python-746a64dc88d6
+
 import hashlib
 from getpass import getpass
 from time import sleep
 
 class Auth:
     def __init__(self):
+        """
+        Define local credentials to use this code
+        """
         self.file_user_credentials = ".user_credentials.txt"
     #
 
     def SignUp(self):
+        """
+        This method will save an username and a hashed password locally
+        """
         username = input("Username: ")
         password = getpass()
         confirm_password = getpass()
@@ -21,6 +30,15 @@ class Auth:
     #
 
     def LogIn(self):
+        """
+        This method compares the username and a hashed passwrod with local 
+        credentials
+
+        Returns
+        -------
+        Bool
+            Whether or not the log in process was succesful
+        """
         username2 = input("Username: ")
         password2 = getpass()
         hash2     = getHash(password2)

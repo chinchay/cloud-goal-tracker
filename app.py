@@ -3,9 +3,14 @@ from Interface import Interface
 import Database as Database
 import os
 
-
-
 def prompt():
+    """
+    The login interface asks to enter a user and a password, and it will compare
+    to the user and hashed password save locally. 
+
+    After successfully being loged in, it will give control to an instance of
+    the Interface class.
+    """
     auth = Auth()
 
     os.system("clear")
@@ -34,23 +39,5 @@ def prompt():
     #
 #
 
-def main():
-    auth = Auth()
-    authenticated, connection_to_database = auth.Authenticate()
-
-    if authenticated:
-        interface = Interface(connection_to_database)
-        # interface.Update()
-        # interface.Visualize()
-        # interface.prompt()
-        interface.Visualize()
-        
-        
-        # interface.Update()
-    #
-#
-
-
 if __name__ == "__main__":
-    # main()
     prompt()
