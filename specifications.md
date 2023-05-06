@@ -1,5 +1,5 @@
 # Classes definition
-The *Cloud Goal Tracker* program will help you to achieve your goals through gamification (turning your goals into a game) throught the use AWS DynamoDB cloud database and Python libraries to connect to the database for updating and visualization purposes. At a starting point, the user should register or authenticate into the program to create a new table in the cloud database or retrieve data from a previouly created table, respectively.
+The *Cloud Goal Tracker* program will help you to achieve your goals through gamification (turning goals achievement into a game) through an AWS DynamoDB cloud database and Python libraries to connect to the database for updating and visualization purposes. At a starting point, the user should register or authenticate into the program to create a new table in the cloud database or retrieve data from a previously created table, respectively.
 
 ## Auth
 
@@ -11,7 +11,7 @@ __Behaviors__:
 * `LogIn()` : authenticate old users by checking username and password
 
 __Attributes__:
-`file_user_credentials` : A file where username and password will be saved when signing up
+* `file_user_credentials` : A file where username and password will be saved when signing up
 
 
 ## Interface
@@ -35,13 +35,13 @@ __Attributes__:
 
 
 
-## Database : to connect with cloud database
+## Database
 
 __Responsibility__:
 * To connect with cloud database and modify its content according to the prompts in the interface
 
 __Behaviors__:
-* `_ConnectWithTable()`: The code stablishes a connection with the DynamoDB AWS database
+* `_ConnectWithTable()`: The code stablishes a connection with the AWS DynamoDB database
 * `BuildPandas()`: It builds a pandas dataframe by using information in the cloud database
 * `_Retrieve()`: The class uses this private method to build visualizations
 * `PutItem()`: User can add/modify a row from the table
