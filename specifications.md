@@ -7,11 +7,11 @@ __Responsibility__:
 * To authenticate user or to register new users
 
 __Behaviors__:
-* `Register()` : register new users by prompting for a username and password
-* `Authenticate()` : authenticate old users by checking username and password
+* `SignUp()` : register new users by prompting for a username and password
+* `LogIn()` : authenticate old users by checking username and password
 
 __Attributes__:
-
+`file_user_credentials` : A file where username and password will be saved when signing up
 
 
 ## Interface
@@ -20,12 +20,18 @@ __Responsibility__:
 * To show and update goals
 
 __Behaviors__:
-* `Interface()` : constructor. Call Build_first_table() for new users. Then call `Visualize()`
-* `Build_first_table()`: Help new user to set up goals
-* `Visualize()` : Display updated goals by retrieving information from cloud database
-* `Update()`    : The user will receive prompts to insert, modify, delete information by calling functions from the DB class
+* `_Prompt()`: The user can ask to visualize, add, modify, or delete items on the remote database
+* `_UpdatePandas()`: Calls for Database class to make a conection the cloud database and build a pandas dataframe
+* `_PromptToContinue()`: Whether or not to continue running the program
+* `_Visualize()`: Display updated goals by retrieving information from cloud database
+* `_GetDate()`: Asks the user for a date in which an item from the database will be modified
+* `_PutItem()`: Add or modify an item to the remote database
+* `_DeleteItem()`: Remove an item from the remote database
 
 __Attributes__:
+* `tableName`: Name of one of the tables from the remote database
+* `database`: An instance of the Database class which will transform user prompts into actions in the cloud database
+* `df`: The remote table converted into a pandas dataframe
 
 
 
@@ -35,13 +41,14 @@ __Responsibility__:
 * To connect with cloud database and modify its content according to the prompts in the interface
 
 __Behaviors__:
-* `Insert()`   : user can insert new goal, the program will insert data from local device into the cloud database
-* `Modify()`   : user can update a goal if he forgot to do that in a previous day
-* `Delete()`   : user can delete a goal
-* `Retrieve()` : the program will retrieve data to plot/show on screen
+* `_ConnectWithTable()`: The code stablishes a connection with the DynamoDB AWS database
+* `BuildPandas()`: It builds a pandas dataframe by using information in the cloud database
+* `_Retrieve()`: The class uses this private method to build visualizations
+* `PutItem()`: User can add/modify a row from the table
+* `DeleteItem()`: User can delete a row from the table
 
 __Attributes__:
-
+* `_table`: The connection to the remote database
 
 
 

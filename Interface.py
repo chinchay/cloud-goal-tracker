@@ -14,10 +14,10 @@ class Interface:
     def __init__(self):
         self.tableName = "sample_table_1"
         self._UpdatePandas()
-        self._prompt()
+        self._Prompt()
     #
 
-    def _prompt(self):
+    def _Prompt(self):
         """
         Presents Visualize, Put item, and Delete item operations to the user
         """
@@ -51,14 +51,14 @@ class Interface:
         pass
     #
 
-    def _promptToContinue(self):
+    def _PromptToContinue(self):
         """
         Asks if the user wants to continue in the program
         """
         sleep(1)
         ans = input("\nDo you wish to continue?\n1. y (yes)\n2. n (no)\nAnswer: ")
         if (ans == "y"):
-            self._prompt()
+            self._Prompt()
         #
 
     def _Visualize(self):
@@ -85,7 +85,7 @@ class Interface:
         plt.clear_data() # to avoid drawing over old data
         
         sleep(1)
-        self._promptToContinue()   
+        self._PromptToContinue()   
     #
 
     def _GetDate(self):
@@ -136,7 +136,7 @@ class Interface:
         item["date"] = date
         self.database.PutItem(item)
         
-        self._promptToContinue()        
+        self._PromptToContinue()        
     #
 
     def _DeleteItem(self):
@@ -148,7 +148,7 @@ class Interface:
         # primaryKey = "2023-04-11"
         self.database.DeleteItem(columnName, primaryKey)
 
-        self._promptToContinue()
+        self._PromptToContinue()
     #
 #
 
