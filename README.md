@@ -4,7 +4,7 @@ The purpose of this *Cloud Goal Tracker* program is to help you to achieve your 
 
 For new users, the software will ask them to register a username and password. For old users, a login process will be required to grant access to the main interface of this program. From the interface, you are allowed to connect to a cloud database to perform visualizations and updating tasks by just following the program prompts.
 
-A demonstration of the software running and a walkthrough of the code can be found [here]().
+A demonstration of the software running and a walkthrough of the code can be found [here](https://youtu.be/BECdDkBeyF0).
 
 Detailed specifications of this program can be found [here](specifications.md).
 
