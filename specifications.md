@@ -1,7 +1,10 @@
-# Classes definition
+# Program Specification
+
 The *Cloud Goal Tracker* program will help you to achieve your goals through gamification (turning goals achievement into a game) through an AWS DynamoDB cloud database and Python libraries to connect to the database for updating and visualization purposes. At a starting point, the user should register or authenticate into the program to create a new table in the cloud database or retrieve data from a previously created table, respectively.
 
-## Auth
+## Classes definition
+
+### Auth
 
 __Responsibility__:
 * To authenticate user or to register new users
@@ -14,7 +17,7 @@ __Attributes__:
 * `file_user_credentials` : A file where username and password will be saved when signing up
 
 
-## Interface
+### Interface
 
 __Responsibility__:
 * To show and update goals
@@ -35,7 +38,7 @@ __Attributes__:
 
 
 
-## Database
+### Database
 
 __Responsibility__:
 * To connect with cloud database and modify its content according to the prompts in the interface
@@ -53,6 +56,6 @@ __Attributes__:
 
 
 
-# Basic flux
+## Basic flux
 
 The main program calls `Auth` to authenticate the user. Different users can participate in the goal tracker. For each user, the program calls `Interface` to show the state of the goals and to allow updates. The `Database`class will allow those changes into the cloud database from the user's local device.
